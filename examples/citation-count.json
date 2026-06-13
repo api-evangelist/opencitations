@@ -1,0 +1,23 @@
+{
+  "example": "Get incoming citation count for a DOI",
+  "endpoint": "GET /index/v2/citation-count/{id}",
+  "request": {
+    "url": "https://api.opencitations.net/index/v2/citation-count/doi:10.1108/jd-12-2013-0166",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "authorization": "YOUR-OPENCITATIONS-ACCESS-TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "count": "34"
+      }
+    ]
+  }
+}

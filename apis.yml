@@ -34,6 +34,8 @@ apis:
     properties:
       - type: Documentation
         url: https://api.opencitations.net/index/v2
+      - type: OpenAPI
+        url: https://kinlane.github.io/all/opencitations/openapi/index-api.yml
       - type: RateLimits
         url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
     contact:
@@ -57,6 +59,8 @@ apis:
     properties:
       - type: Documentation
         url: https://api.opencitations.net/meta/v1
+      - type: OpenAPI
+        url: https://kinlane.github.io/all/opencitations/openapi/meta-api.yml
       - type: RateLimits
         url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
     contact:

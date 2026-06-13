@@ -1,0 +1,33 @@
+{
+  "example": "Get all works authored by a person identified by ORCID",
+  "endpoint": "GET /meta/v1/author/{id}",
+  "request": {
+    "url": "https://api.opencitations.net/meta/v1/author/orcid:0000-0002-8420-0696",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "authorization": "YOUR-OPENCITATIONS-ACCESS-TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "id": "doi:10.3233/ds-190019 omid:br/06102227626",
+        "title": "Extending the OpenCitations Data Model to enable the Annotation of bibliographic resources",
+        "author": "Peroni, Silvio [orcid:0000-0003-0530-4305 omid:ra/0610122312]; Shotton, David [orcid:0000-0001-5506-523X omid:ra/0610120108]",
+        "pub_date": "2019-11-25",
+        "page": "43-61",
+        "issue": "1",
+        "volume": "2",
+        "venue": "Data Science [issn:2451-8484 omid:br/06170171200]",
+        "type": "journal article",
+        "publisher": "IOS Press [crossref:1020 omid:ra/0610130982]",
+        "editor": ""
+      }
+    ]
+  }
+}

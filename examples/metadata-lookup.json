@@ -1,0 +1,33 @@
+{
+  "example": "Get bibliographic metadata for a DOI",
+  "endpoint": "GET /meta/v1/metadata/{ids}",
+  "request": {
+    "url": "https://api.opencitations.net/meta/v1/metadata/doi:10.1007/978-1-4020-9632-7",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "authorization": "YOUR-OPENCITATIONS-ACCESS-TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "id": "doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 isbn:9789048127108 openalex:W4249829199 omid:br/0612058700",
+        "title": "Adaptive Environmental Management",
+        "author": "",
+        "pub_date": "2009",
+        "page": "",
+        "issue": "",
+        "volume": "",
+        "venue": "",
+        "type": "book",
+        "publisher": "Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]",
+        "editor": "Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]; Stankey, George H. [omid:ra/061808486861]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "oc": "https://w3id.org/oc/ontology/",
+    "cito": "http://purl.org/spar/cito/",
+    "fabio": "http://purl.org/spar/fabio/",
+    "datacite": "http://purl.org/spar/datacite/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "pro": "http://purl.org/spar/pro/",
+    "frbr": "http://purl.org/vocab/frbr/core#",
+    "prism": "http://prismstandard.org/namespaces/basic/2.0/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "OpenCitationsIndex": "oc:OpenCitationsIndex",
+    "OpenCitationsMeta": "oc:OpenCitationsMeta",
+
+    "Citation": "cito:Citation",
+    "oci": {
+      "@id": "oc:hasOCI",
+      "@type": "@id"
+    },
+    "citing": {
+      "@id": "cito:hasCitingEntity",
+      "@type": "@id"
+    },
+    "cited": {
+      "@id": "cito:hasCitedEntity",
+      "@type": "@id"
+    },
+    "creation": {
+      "@id": "dcterms:created",
+      "@type": "xsd:date"
+    },
+    "timespan": {
+      "@id": "cito:hasCitationTimeSpan",
+      "@type": "xsd:duration"
+    },
+    "journal_sc": "cito:isJournalSelfCitation",
+    "author_sc": "cito:isAuthorSelfCitation",
+
+    "BibliographicResource": "fabio:BibliographicResource",
+    "id": "datacite:hasIdentifier",
+    "title": "dcterms:title",
+    "author": {
+      "@id": "pro:isDocumentContextFor",
+      "@type": "@id"
+    },
+    "pub_date": {
+      "@id": "prism:publicationDate",
+      "@type": "xsd:date"
+    },
+    "venue": {
+      "@id": "frbr:partOf",
+      "@type": "@id"
+    },
+    "volume": "prism:volume",
+    "issue": "prism:number",
+    "page": "prism:pageRange",
+    "type": "dcterms:type",
+    "publisher": {
+      "@id": "dcterms:publisher",
+      "@type": "@id"
+    },
+    "editor": {
+      "@id": "pro:isDocumentContextFor",
+      "@type": "@id"
+    },
+
+    "name": "foaf:name",
+    "familyName": "foaf:familyName",
+    "givenName": "foaf:givenName",
+
+    "doi": "datacite:doi",
+    "omid": "oc:omid",
+    "pmid": "datacite:pmid",
+    "pmcid": "datacite:pmcid",
+    "issn": "datacite:issn",
+    "isbn": "datacite:isbn",
+    "orcid": "datacite:orcid",
+    "openalex": "datacite:openalex",
+
+    "count": "oc:citationCount",
+    "OpenCitationsAPI": {
+      "@id": "schema:WebAPI"
+    },
+    "IndexAPI": {
+      "@id": "schema:WebAPI",
+      "schema:name": "OpenCitations Index REST API",
+      "schema:url": "https://api.opencitations.net/index/v2",
+      "schema:version": "2.2.0"
+    },
+    "MetaAPI": {
+      "@id": "schema:WebAPI",
+      "schema:name": "OpenCitations Meta REST API",
+      "schema:url": "https://api.opencitations.net/meta/v1",
+      "schema:version": "1.1.1"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "schema:WebAPI",
+      "@id": "https://api.opencitations.net/index/v2",
+      "schema:name": "OpenCitations Index REST API",
+      "schema:description": "REST API for accessing citation entities in the OpenCitations dataset. Provides citation counts, incoming/outgoing reference lookups, and citation metadata by DOI, PMID, or OMID.",
+      "schema:url": "https://api.opencitations.net/index/v2",
+      "schema:version": "2.2.0",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "OpenCitations",
+        "schema:url": "https://opencitations.net",
+        "schema:email": "contact@opencitations.net"
+      },
+      "schema:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "schema:termsOfService": "https://opencitations.net/accesstoken",
+      "schema:documentation": "https://api.opencitations.net/index/v2"
+    },
+    {
+      "@type": "schema:WebAPI",
+      "@id": "https://api.opencitations.net/meta/v1",
+      "schema:name": "OpenCitations Meta REST API",
+      "schema:description": "REST API for retrieving bibliographic metadata associated with documents involved in citations. Supports lookup by DOI, ISSN, ISBN, OMID, OpenAlex ID, PMID, and PMCID.",
+      "schema:url": "https://api.opencitations.net/meta/v1",
+      "schema:version": "1.1.1",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "OpenCitations",
+        "schema:url": "https://opencitations.net",
+        "schema:email": "contact@opencitations.net"
+      },
+      "schema:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "schema:termsOfService": "https://opencitations.net/accesstoken",
+      "schema:documentation": "https://api.opencitations.net/meta/v1"
+    },
+    {
+      "@type": "schema:Organization",
+      "@id": "https://opencitations.net",
+      "schema:name": "OpenCitations",
+      "schema:description": "OpenCitations is an open science research infrastructure providing free access to scholarly bibliographic and citation data. All data is published under CC0 Public Domain Waiver for unrestricted reuse.",
+      "schema:url": "https://opencitations.net",
+      "schema:email": "contact@opencitations.net",
+      "schema:sameAs": [
+        "https://github.com/opencitations",
+        "https://sparql.opencitations.net"
+      ]
+    }
+  ]
+}

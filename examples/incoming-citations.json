@@ -1,0 +1,39 @@
+{
+  "example": "Get all incoming citations to a work identified by DOI",
+  "endpoint": "GET /index/v2/citations/{id}",
+  "notes": "Returns up to 200,000 citations. For large-scale retrieval, use database dumps at download.opencitations.net.",
+  "request": {
+    "url": "https://api.opencitations.net/index/v2/citations/doi:10.1108/jd-12-2013-0166",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "authorization": "YOUR-OPENCITATIONS-ACCESS-TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "oci": "06101801781-06180334099",
+        "citing": "omid:br/06101801781 doi:10.7717/peerj-cs.421 pmid:33817056",
+        "cited": "omid:br/06180334099 doi:10.1108/jd-12-2013-0166",
+        "creation": "2021-03-10",
+        "timespan": "P6Y0M1D",
+        "journal_sc": "no",
+        "author_sc": "no"
+      },
+      {
+        "oci": "06102227626-06180334099",
+        "citing": "omid:br/06102227626 doi:10.3233/ds-190019",
+        "cited": "omid:br/06180334099 doi:10.1108/jd-12-2013-0166",
+        "creation": "2019-11-25",
+        "timespan": "P4Y8M16D",
+        "journal_sc": "no",
+        "author_sc": "no"
+      }
+    ]
+  }
+}
