@@ -1,0 +1,90 @@
+name: OpenCitations
+description: OpenCitations is an open science research infrastructure providing free
+  access to scholarly bibliographic and citation data. It offers REST APIs for querying
+  citation networks, DOI-based citation lookups, reference data, and bibliographic
+  metadata from millions of research articles. All data is published under CC0 Public
+  Domain Waiver for unrestricted reuse.
+image: https://opencitations.net/static/favicon.ico
+url: https://opencitations.net
+created: '2024-01-01'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Citations
+  - Scholarly
+  - Research
+  - Open Science
+  - Bibliometrics
+  - DOI
+  - Academic
+apis:
+  - name: OpenCitations Index API
+    description: REST API for accessing citation entities in the OpenCitations dataset.
+      Provides citation counts, incoming/outgoing reference lookups, and citation
+      metadata by DOI, PMID, or OMID. Aggregates data across all OpenCitations indexes
+      including COCI (Crossref open DOI-to-DOI citations).
+    image: https://opencitations.net/static/favicon.ico
+    humanURL: https://api.opencitations.net/index/v2
+    baseURL: https://api.opencitations.net/index/v2
+    tags:
+      - Citations
+      - References
+      - DOI
+      - Scholarly
+    properties:
+      - type: Documentation
+        url: https://api.opencitations.net/index/v2
+      - type: RateLimits
+        url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+    contact:
+      - FN: OpenCitations
+        email: contact@opencitations.net
+        X-website: https://opencitations.net
+    version: 2.2.0
+  - name: OpenCitations Meta API
+    description: REST API for retrieving bibliographic metadata associated with documents
+      involved in citations. Supports lookup by DOI, ISSN, ISBN, OMID, OpenAlex ID,
+      PMID, and PMCID. Also provides author and editor-based queries using ORCID or
+      OMID identifiers.
+    image: https://opencitations.net/static/favicon.ico
+    humanURL: https://api.opencitations.net/meta/v1
+    baseURL: https://api.opencitations.net/meta/v1
+    tags:
+      - Bibliographic Metadata
+      - DOI
+      - ORCID
+      - Scholarly
+    properties:
+      - type: Documentation
+        url: https://api.opencitations.net/meta/v1
+      - type: RateLimits
+        url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
+    contact:
+      - FN: OpenCitations
+        email: contact@opencitations.net
+        X-website: https://opencitations.net
+    version: 1.1.1
+  - name: OpenCitations SPARQL Endpoint
+    description: SPARQL endpoints for structured queries against the OpenCitations
+      Meta and Index datasets. Provides access to the full Linked Open Data graph
+      for both bibliographic metadata and citation entity data using the SPARQL query
+      language.
+    image: https://opencitations.net/static/favicon.ico
+    humanURL: https://sparql.opencitations.net
+    baseURL: https://sparql.opencitations.net
+    tags:
+      - SPARQL
+      - Linked Open Data
+      - RDF
+      - Scholarly
+    properties:
+      - type: Documentation
+        url: https://sparql.opencitations.net
+    contact:
+      - FN: OpenCitations
+        email: contact@opencitations.net
+        X-website: https://opencitations.net
+maintainers:
+  - FN: OpenCitations
+    email: contact@opencitations.net
+    X-website: https://opencitations.net
