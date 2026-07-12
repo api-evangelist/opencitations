@@ -92,3 +92,8 @@ maintainers:
   - FN: OpenCitations
     email: contact@opencitations.net
     X-website: https://opencitations.net
+common:
+- type: DomainSecurity
+  url: security/opencitations-domain-security.yml
+- type: Authentication
+  url: authentication/opencitations-authentication.yml

@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/index-api.yml, openapi/meta-api.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: accessToken
+  type: apiKey
+  in: header
+  parameter: authorization
+  description: OpenCitations Access Token obtained from https://opencitations.net/accesstoken.
+    Recommended for application/code usage to ensure stable access.
+  sources:
+  - openapi/index-api.yml
+  - openapi/meta-api.yml

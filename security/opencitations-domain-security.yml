@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: api.opencitations.net
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  8 06:53:26 2026 GMT
+  hsts: false
+- host: sparql.opencitations.net
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 30 23:02:50 2026 GMT
+  hsts: false
+domains:
+- domain: opencitations.net
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
