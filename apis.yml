@@ -93,6 +93,8 @@ maintainers:
     email: contact@opencitations.net
     X-website: https://opencitations.net
 common:
+- type: AgenticAccess
+  url: agentic-access/opencitations-agentic-access.yml
 - type: DomainSecurity
   url: security/opencitations-domain-security.yml
 - type: Authentication
