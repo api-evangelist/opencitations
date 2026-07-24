@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: OpenCitations Index REST Authors Metadata API
+  description: 'REST API for accessing the data stored in the OpenCitations Index. Provides operations to retrieve citation data for references to other works appearing in a particular bibliographic entity, or citation data for references in other works to a particular bibliographic entity, given the identifier of a bibliographic entity, or to retrieve citation data about a particular citation identified by means of its Open Citation Identifier (OCI).
+
+    All operations return either a JSON document (default) or a CSV document according to the mimetype specified in the Accept header of the request.
+
+    API calls are rate-limited to 180 requests/minute per IP address. For large-scale retrieval use the database dumps at download.opencitations.net.
+
+    '
+  version: 2.2.0
+  contact:
+    name: OpenCitations
+    email: contact@opencitations.net
+    url: https://opencitations.net
+  license:
+    name: Creative Commons Attribution 4.0 International
+    url: https://creativecommons.org/licenses/by/4.0/legalcode
+  x-api-created: '2025-04-15'
+servers:
+- url: https://api.opencitations.net/index/v2
+  description: OpenCitations Index API v2
+security:
+- accessToken: []
+- {}
+tags:
+- name: Metadata
+  description: Operations for retrieving bibliographic metadata
+paths:
+  /metadata/{ids}:
+    get:
+      summary: Get bibliographic metadata by ID
+      operationId: getMetadataByIds
+      description: 'Retrieves the bibliographic metadata for each of the bibliographic entities identified by one or more input IDs.
+
+        Each ID is built as follows: ID abbreviation + ":" + ID value. For example, "doi:10.3233/ds-170012" indicates a DOI identifier with value "10.3233/ds-170012".
+
+        Supported ID abbreviations: doi, issn, isbn, omid, openalex, pmid, pmcid.
+
+        Multiple IDs can be specified separated with double underscore "__". Example: doi:10.1108/jd-12-2013-0166__doi:10.1016/j.websem.2012.08.001
+
+        Fields returned: - id: the IDs of the bibliographic entity (space-separated) - title: the title of the bibliographic entity - author: semicolon-separated list of authors - pub_date: date of publication - venue: title of the venue with identifiers - volume: volume number - issue: issue number - page: starting and ending pages - type: type of bibliographic entity - publisher: publisher with identifiers - editor: semicolon-separated list of editors
+
+        '
+      tags:
+      - Metadata
+      parameters:
+      - name: ids
+        in: path
+        required: true
+        description: 'One or more bibliographic entity IDs separated by "__". Supported prefixes: doi, issn, isbn, omid, openalex, pmid, pmcid.
+
+          '
+        schema:
+          type: string
+          example: doi:10.1007/978-1-4020-9632-7
+      - $ref: '#/components/parameters/require'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/format'
+      - $ref: '#/components/parameters/json'
+      responses:
+        '200':
+          description: Bibliographic metadata records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BibliographicMetadata'
+              example:
+              - id: doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 isbn:9789048127108 openalex:W4249829199 omid:br/0612058700
+                title: Adaptive Environmental Management
+                author: ''
+                pub_date: '2009'
+                page: ''
+                issue: ''
+                volume: ''
+                venue: ''
+                type: book
+                publisher: Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]
+                editor: Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]; Stankey, George H. [omid:ra/061808486861]
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: No metadata found for the given IDs
+components:
+  schemas:
+    BibliographicMetadata:
+      type: object
+      description: Bibliographic metadata for a scholarly work
+      properties:
+        id:
+          type: string
+          description: 'Space-separated list of identifiers for the bibliographic entity. May include doi, isbn, issn, openalex, omid, pmid, pmcid values.
+
+            '
+          example: doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 omid:br/0612058700
+        title:
+          type: string
+          description: Title of the bibliographic entity
+          example: Adaptive Environmental Management
+        author:
+          type: string
+          description: 'Semicolon-separated list of authors with their identifiers in brackets. Format: FamilyName, GivenName [orcid:... omid:ra/...]
+
+            '
+          example: Peroni, Silvio [orcid:0000-0003-0530-4305 omid:ra/0610122312]
+        pub_date:
+          type: string
+          description: Publication date (ISO 8601 or partial date)
+          example: '2009'
+        issue:
+          type: string
+          description: Issue number of the publication
+          example: '1'
+        volume:
+          type: string
+          description: Volume number of the publication
+          example: '42'
+        venue:
+          type: string
+          description: Title of the publication venue with identifiers in brackets
+          example: Scientometrics [issn:0138-9130 omid:br/0612058701]
+        page:
+          type: string
+          description: Starting and ending page numbers
+          example: 1-25
+        type:
+          type: string
+          description: Type of the bibliographic entity
+          enum:
+          - book
+          - book chapter
+          - book part
+          - book section
+          - book series
+          - book set
+          - book track
+          - component
+          - dataset
+          - dissertation
+          - edited book
+          - journal
+          - journal article
+          - journal issue
+          - journal volume
+          - monograph
+          - other
+          - peer review
+          - posted content
+          - proceedings
+          - proceedings article
+          - proceedings series
+          - reference book
+          - reference entry
+          - report
+          - report series
+          - standard
+          - standard series
+          example: book
+        publisher:
+          type: string
+          description: Publisher name with identifiers in brackets
+          example: Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]
+        editor:
+          type: string
+          description: 'Semicolon-separated list of editors with their identifiers in brackets. Format: FamilyName, GivenName [orcid:... omid:ra/...]
+
+            '
+          example: Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]
+  parameters:
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
+
+        '
+      schema:
+        type: string
+        example: date:>2015
+    format:
+      name: format
+      in: query
+      required: false
+      description: Output format. Accepts "csv" or "json" (default).
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
+
+        '
+      schema:
+        type: string
+        example: desc(pub_date)
+    json:
+      name: json
+      in: query
+      required: false
+      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
+
+        '
+      schema:
+        type: string
+    require:
+      name: require
+      in: query
+      required: false
+      description: Removes rows with empty values in the specified field
+      schema:
+        type: string
+        example: doi
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: header
+      name: authorization
+      description: 'OpenCitations Access Token obtained from https://opencitations.net/accesstoken. Recommended for application/code usage to ensure stable access.
+
+        '
+externalDocs:
+  description: OpenCitations Index API Documentation
+  url: https://api.opencitations.net/index/v2
