@@ -4,6 +4,18 @@ description: OpenCitations is an open science research infrastructure providing 
   citation networks, DOI-based citation lookups, reference data, and bibliographic
   metadata from millions of research articles. All data is published under CC0 Public
   Domain Waiver for unrestricted reuse.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://opencitations.net/static/favicon.ico
 url: https://opencitations.net
 created: '2024-01-01'
@@ -18,76 +30,116 @@ tags:
   - DOI
   - Academic
 apis:
-  - name: OpenCitations Index API
-    description: REST API for accessing citation entities in the OpenCitations dataset.
-      Provides citation counts, incoming/outgoing reference lookups, and citation
-      metadata by DOI, PMID, or OMID. Aggregates data across all OpenCitations indexes
-      including COCI (Crossref open DOI-to-DOI citations).
-    image: https://opencitations.net/static/favicon.ico
-    humanURL: https://api.opencitations.net/index/v2
-    baseURL: https://api.opencitations.net/index/v2
-    tags:
-      - Citations
-      - References
-      - DOI
-      - Scholarly
-    properties:
-      - type: Documentation
-        url: https://api.opencitations.net/index/v2
-      - type: OpenAPI
-        url: https://kinlane.github.io/all/opencitations/openapi/index-api.yml
-      - type: RateLimits
-        url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
-    contact:
-      - FN: OpenCitations
-        email: contact@opencitations.net
-        X-website: https://opencitations.net
-    version: 2.2.0
-  - name: OpenCitations Meta API
-    description: REST API for retrieving bibliographic metadata associated with documents
-      involved in citations. Supports lookup by DOI, ISSN, ISBN, OMID, OpenAlex ID,
-      PMID, and PMCID. Also provides author and editor-based queries using ORCID or
-      OMID identifiers.
-    image: https://opencitations.net/static/favicon.ico
-    humanURL: https://api.opencitations.net/meta/v1
-    baseURL: https://api.opencitations.net/meta/v1
-    tags:
-      - Bibliographic Metadata
-      - DOI
-      - ORCID
-      - Scholarly
-    properties:
-      - type: Documentation
-        url: https://api.opencitations.net/meta/v1
-      - type: OpenAPI
-        url: https://kinlane.github.io/all/opencitations/openapi/meta-api.yml
-      - type: RateLimits
-        url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
-    contact:
-      - FN: OpenCitations
-        email: contact@opencitations.net
-        X-website: https://opencitations.net
-    version: 1.1.1
-  - name: OpenCitations SPARQL Endpoint
-    description: SPARQL endpoints for structured queries against the OpenCitations
-      Meta and Index datasets. Provides access to the full Linked Open Data graph
-      for both bibliographic metadata and citation entity data using the SPARQL query
-      language.
-    image: https://opencitations.net/static/favicon.ico
-    humanURL: https://sparql.opencitations.net
-    baseURL: https://sparql.opencitations.net
-    tags:
-      - SPARQL
-      - Linked Open Data
-      - RDF
-      - Scholarly
-    properties:
-      - type: Documentation
-        url: https://sparql.opencitations.net
-    contact:
-      - FN: OpenCitations
-        email: contact@opencitations.net
-        X-website: https://opencitations.net
+- name: OpenCitations SPARQL Endpoint
+  description: >-
+    SPARQL endpoints for structured queries against the OpenCitations Meta and Index datasets. Provides
+    access to the full Linked Open Data graph for both bibliographic metadata and citation entity data
+    using the SPARQL query language.
+  image: https://opencitations.net/static/favicon.ico
+  humanURL: https://sparql.opencitations.net
+  baseURL: https://sparql.opencitations.net
+  tags:
+  - SPARQL
+  - Linked Open Data
+  - RDF
+  - Scholarly
+  properties:
+  - type: Documentation
+    url: https://sparql.opencitations.net
+  contact:
+  - FN: OpenCitations
+    email: contact@opencitations.net
+    X-website: https://opencitations.net
+- aid: opencitations:opencitations-authors-api
+  name: OpenCitations Authors API
+  description: Operations for retrieving works by author
+  humanURL: https://api.opencitations.net/index/v2
+  baseURL: https://api.opencitations.net/index/v2
+  tags:
+  - Authors
+  properties:
+  - type: OpenAPI
+    url: openapi/opencitations-authors-api-openapi.yml
+  - type: Documentation
+    url: https://api.opencitations.net/index/v2
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+  - type: Documentation
+    url: https://api.opencitations.net/meta/v1
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
+- aid: opencitations:opencitations-citations-api
+  name: OpenCitations Citations API
+  description: Operations for retrieving citation metadata and counts
+  humanURL: https://api.opencitations.net/index/v2
+  baseURL: https://api.opencitations.net/index/v2
+  tags:
+  - Citations
+  properties:
+  - type: OpenAPI
+    url: openapi/opencitations-citations-api-openapi.yml
+  - type: Documentation
+    url: https://api.opencitations.net/index/v2
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+  - type: Documentation
+    url: https://api.opencitations.net/meta/v1
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
+- aid: opencitations:opencitations-editors-api
+  name: OpenCitations Editors API
+  description: Operations for retrieving works by editor
+  humanURL: https://api.opencitations.net/index/v2
+  baseURL: https://api.opencitations.net/index/v2
+  tags:
+  - Editors
+  properties:
+  - type: OpenAPI
+    url: openapi/opencitations-editors-api-openapi.yml
+  - type: Documentation
+    url: https://api.opencitations.net/index/v2
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+  - type: Documentation
+    url: https://api.opencitations.net/meta/v1
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
+- aid: opencitations:opencitations-metadata-api
+  name: OpenCitations Metadata API
+  description: Operations for retrieving bibliographic metadata
+  humanURL: https://api.opencitations.net/index/v2
+  baseURL: https://api.opencitations.net/index/v2
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/opencitations-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://api.opencitations.net/index/v2
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+  - type: Documentation
+    url: https://api.opencitations.net/meta/v1
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
+- aid: opencitations:opencitations-references-api
+  name: OpenCitations References API
+  description: Operations for retrieving outgoing reference data
+  humanURL: https://api.opencitations.net/index/v2
+  baseURL: https://api.opencitations.net/index/v2
+  tags:
+  - References
+  properties:
+  - type: OpenAPI
+    url: openapi/opencitations-references-api-openapi.yml
+  - type: Documentation
+    url: https://api.opencitations.net/index/v2
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/index-api.html
+  - type: Documentation
+    url: https://api.opencitations.net/meta/v1
+  - type: RateLimits
+    url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
 maintainers:
   - FN: OpenCitations
     email: contact@opencitations.net
