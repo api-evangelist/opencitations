@@ -1,0 +1,22 @@
+{
+  "provider": "opencitations",
+  "sources": [
+    "opencitations-authors-api-openapi.yml",
+    "opencitations-citations-api-openapi.yml",
+    "opencitations-editors-api-openapi.yml",
+    "opencitations-metadata-api-openapi.yml",
+    "opencitations-references-api-openapi.yml"
+  ],
+  "outputs": [
+    "opencitations-authors-api-openapi.yml",
+    "opencitations-citations-api-openapi.yml",
+    "opencitations-editors-api-openapi.yml",
+    "opencitations-metadata-api-openapi.yml",
+    "opencitations-references-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
