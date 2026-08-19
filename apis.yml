@@ -20,7 +20,7 @@ image: https://opencitations.net/static/favicon.ico
 url: https://opencitations.net
 created: '2024-01-01'
 modified: '2026-06-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
   - Citations
   - Scholarly
