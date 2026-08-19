@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenCitations Index REST Authors References API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authorization",
+      "value": "{{authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "References",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get outgoing reference count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/reference-count/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, omid:, or issn:\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              }
+            ]
+          },
+          "docs": "Retrieves the number of outgoing citations from the bibliographic entity identified by the input PID (DOI, PMID, OMID, or ISSN).\n"
+        },
+        {
+          "info": {
+            "name": "Get outgoing references",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/references/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+              },
+              {
+                "name": "require",
+                "value": "",
+                "type": "query",
+                "description": "Removes rows with empty values in the specified field"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              },
+              {
+                "name": "json",
+                "value": "",
+                "type": "query",
+                "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves citation data for all outgoing references to other cited works appearing in the reference list of the bibliographic entity identified by the input PID (DOI, PMID, or OMID).\nFields returned: oci, citing, cited, creation, timespan, journal_sc, author_sc.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

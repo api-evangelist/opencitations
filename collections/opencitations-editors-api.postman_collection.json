@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "38f05cea-3c93-4a9a-bd55-4449be5e842c",
+      "name": "Editors",
+      "description": {
+        "content": "Operations for retrieving works by editor",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac9437eb-19d5-4794-a9bf-497fa3ad3448",
+          "name": "Get works by editor",
+          "request": {
+            "name": "Get works by editor",
+            "description": {
+              "content": "Retrieves the bibliographic metadata for each bibliographic entity edited by the person identified by the given ORCID or OpenCitations Meta Identifier (OMID).\nFields returned: id, title, author, pub_date, issue, volume, venue, page, type, publisher, editor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "require",
+                  "value": "<string>",
+                  "description": "Removes rows with empty values in the specified field"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<string>",
+                  "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ORCID or OMID of the editor. Example: orcid:0000-0003-2098-4759\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eedcd707-0c25-41dd-ac71-65fd15bea26a",
+              "name": "Bibliographic metadata for works edited by the person",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "require",
+                      "value": "doi"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "date:>2015"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc(pub_date)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "json",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ORCID or OMID of the editor. Example: orcid:0000-0003-2098-4759\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 omid:br/0612058700\",\n    \"title\": \"Adaptive Environmental Management\",\n    \"author\": \"Peroni, Silvio [orcid:0000-0003-0530-4305 omid:ra/0610122312]\",\n    \"pub_date\": \"2009\",\n    \"issue\": \"1\",\n    \"volume\": \"42\",\n    \"venue\": \"Scientometrics [issn:0138-9130 omid:br/0612058701]\",\n    \"page\": \"1-25\",\n    \"type\": \"book\",\n    \"publisher\": \"Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]\",\n    \"editor\": \"Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]\"\n  },\n  {\n    \"id\": \"doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 omid:br/0612058700\",\n    \"title\": \"Adaptive Environmental Management\",\n    \"author\": \"Peroni, Silvio [orcid:0000-0003-0530-4305 omid:ra/0610122312]\",\n    \"pub_date\": \"2009\",\n    \"issue\": \"1\",\n    \"volume\": \"42\",\n    \"venue\": \"Scientometrics [issn:0138-9130 omid:br/0612058701]\",\n    \"page\": \"1-25\",\n    \"type\": \"book\",\n    \"publisher\": \"Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]\",\n    \"editor\": \"Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb02215b-7ba6-423a-94c0-f9044db4669b",
+              "name": "Editor not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "require",
+                      "value": "doi"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "date:>2015"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc(pub_date)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "json",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ORCID or OMID of the editor. Example: orcid:0000-0003-2098-4759\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.opencitations.net/index/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebe192e7-03cb-4ff7-a32d-4c3ccaaee94c",
+    "name": "OpenCitations Index REST Authors Editors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for accessing the data stored in the OpenCitations Index. Provides operations to retrieve citation data for references to other works appearing in a particular bibliographic entity, or citation data for references in other works to a particular bibliographic entity, given the identifier of a bibliographic entity, or to retrieve citation data about a particular citation identified by means of its Open Citation Identifier (OCI).\nAll operations return either a JSON document (default) or a CSV document according to the mimetype specified in the Accept header of the request.\nAPI calls are rate-limited to 180 requests/minute per IP address. For large-scale retrieval use the database dumps at download.opencitations.net.\n\n\nContact Support:\n Name: OpenCitations\n Email: contact@opencitations.net",
+      "type": "text/plain"
+    }
+  }
+}

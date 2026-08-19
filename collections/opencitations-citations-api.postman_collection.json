@@ -1,0 +1,574 @@
+{
+  "item": [
+    {
+      "id": "e45b78b1-62b5-4cf2-9cb6-fd9abdba42f7",
+      "name": "Citations",
+      "description": {
+        "content": "Operations for retrieving citation metadata and counts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0351d54b-98fa-4fef-a298-bd119177348a",
+          "name": "Get citation by OCI",
+          "request": {
+            "name": "Get citation by OCI",
+            "description": {
+              "content": "Retrieves the citation metadata for the citation identified by the input Open Citation Identifier (OCI).\nThe Open Citation Identifier is a globally unique persistent identifier for bibliographic citations, consisting of two numbers separated by a dash (without the \"oci:\" prefix).\nFields returned: - oci: the Open Citation Identifier of the citation - citing: the PIDs of the citing entity - cited: the PIDs of the cited entity - creation: the creation date of the citation (ISO 8601 YYYY-MM-DD) - timespan: interval between publication dates (XSD duration PnYnMnD) - journal_sc: whether the citation is a journal self-citation (yes/no) - author_sc: whether the citation is an author self-citation (yes/no)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "citation",
+                ":oci"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oci",
+                  "description": "(Required) The dash-separated OCI number pair (without \"oci:\" prefix). Example: 06101801781-06180334099\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85a706cc-2bd7-414f-818f-ba02e3b4d1aa",
+              "name": "Citation metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "citation",
+                    ":oci"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oci",
+                      "description": "(Required) The dash-separated OCI number pair (without \"oci:\" prefix). Example: 06101801781-06180334099\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"oci\": \"06101801781-06180334099\",\n    \"citing\": \"omid:br/06101801781 doi:10.7717/peerj-cs.421 pmid:33817056\",\n    \"cited\": \"omid:br/06180334099 doi:10.1108/jd-12-2013-0166\",\n    \"creation\": \"2021-03-10\",\n    \"timespan\": \"P6Y0M1D\",\n    \"journal_sc\": \"no\",\n    \"author_sc\": \"no\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "586de11b-fae4-4121-8d62-33ea6ce68c63",
+              "name": "Citation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "citation",
+                    ":oci"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oci",
+                      "description": "(Required) The dash-separated OCI number pair (without \"oci:\" prefix). Example: 06101801781-06180334099\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "999df450-6c75-4c63-bc47-fe6feaccc1ee",
+          "name": "Get incoming citation count",
+          "request": {
+            "name": "Get incoming citation count",
+            "description": {
+              "content": "Retrieves the number of incoming citations to the bibliographic entity identified by the input PID (DOI, PMID, or OMID).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "citation-count",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92041b96-e290-4184-a154-55f7a3ea2436",
+              "name": "Incoming citation count",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "citation-count",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"count\": \"34\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6b3dd47-fe48-4797-9ccd-0ee0c09de236",
+          "name": "Get venue incoming citation count",
+          "request": {
+            "name": "Get venue incoming citation count",
+            "description": {
+              "content": "Retrieves the number of incoming citations to all bibliographic entities published in a specific journal identified by the input ISSN.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "venue-citation-count",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ISSN of the journal, prefixed with \"issn:\""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9e92b66-c75d-4543-8e70-64d7272a2369",
+              "name": "Total incoming citation count for venue",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "venue-citation-count",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ISSN of the journal, prefixed with \"issn:\""
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"count\": \"64352\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "476713d6-282e-4cac-8533-ef3a76703d28",
+          "name": "Get incoming citations",
+          "request": {
+            "name": "Get incoming citations",
+            "description": {
+              "content": "Retrieves citation data for all references appearing in the reference lists of other citing works to the bibliographic entity identified by the input PID (DOI, PMID, or OMID). These constitute the incoming citations of the identified bibliographic entity.\nFields returned: oci, citing, cited, creation, timespan, journal_sc, author_sc.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "citations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "require",
+                  "value": "<string>",
+                  "description": "Removes rows with empty values in the specified field"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<string>",
+                  "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a338a656-8060-43a1-9d88-340196f03a81",
+              "name": "Incoming citations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "citations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "require",
+                      "value": "doi"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "date:>2015"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc(date)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "json",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"oci\": \"06101801781-06180334099\",\n    \"citing\": \"omid:br/06101801781 doi:10.7717/peerj-cs.421 pmid:33817056\",\n    \"cited\": \"omid:br/06180334099 doi:10.1108/jd-12-2013-0166\",\n    \"creation\": \"2021-03-10\",\n    \"timespan\": \"P6Y0M1D\",\n    \"journal_sc\": \"true\",\n    \"author_sc\": \"true\"\n  },\n  {\n    \"oci\": \"06101801781-06180334099\",\n    \"citing\": \"omid:br/06101801781 doi:10.7717/peerj-cs.421 pmid:33817056\",\n    \"cited\": \"omid:br/06180334099 doi:10.1108/jd-12-2013-0166\",\n    \"creation\": \"2021-03-10\",\n    \"timespan\": \"P6Y0M1D\",\n    \"journal_sc\": \"true\",\n    \"author_sc\": \"true\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.opencitations.net/index/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a39d9e8b-8e64-4d47-ad8a-23580d2127b2",
+    "name": "OpenCitations Index REST Authors Citations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for accessing the data stored in the OpenCitations Index. Provides operations to retrieve citation data for references to other works appearing in a particular bibliographic entity, or citation data for references in other works to a particular bibliographic entity, given the identifier of a bibliographic entity, or to retrieve citation data about a particular citation identified by means of its Open Citation Identifier (OCI).\nAll operations return either a JSON document (default) or a CSV document according to the mimetype specified in the Accept header of the request.\nAPI calls are rate-limited to 180 requests/minute per IP address. For large-scale retrieval use the database dumps at download.opencitations.net.\n\n\nContact Support:\n Name: OpenCitations\n Email: contact@opencitations.net",
+      "type": "text/plain"
+    }
+  }
+}

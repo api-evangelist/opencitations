@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "8ccfadfe-f918-448b-bfd7-ac832bfd76bf",
+      "name": "Metadata",
+      "description": {
+        "content": "Operations for retrieving bibliographic metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9172afc-b481-4a39-b7d6-f9535a1f14e6",
+          "name": "Get bibliographic metadata by ID",
+          "request": {
+            "name": "Get bibliographic metadata by ID",
+            "description": {
+              "content": "Retrieves the bibliographic metadata for each of the bibliographic entities identified by one or more input IDs.\nEach ID is built as follows: ID abbreviation + \":\" + ID value. For example, \"doi:10.3233/ds-170012\" indicates a DOI identifier with value \"10.3233/ds-170012\".\nSupported ID abbreviations: doi, issn, isbn, omid, openalex, pmid, pmcid.\nMultiple IDs can be specified separated with double underscore \"__\". Example: doi:10.1108/jd-12-2013-0166__doi:10.1016/j.websem.2012.08.001\nFields returned: - id: the IDs of the bibliographic entity (space-separated) - title: the title of the bibliographic entity - author: semicolon-separated list of authors - pub_date: date of publication - venue: title of the venue with identifiers - volume: volume number - issue: issue number - page: starting and ending pages - type: type of bibliographic entity - publisher: publisher with identifiers - editor: semicolon-separated list of editors\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                ":ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "require",
+                  "value": "<string>",
+                  "description": "Removes rows with empty values in the specified field"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<string>",
+                  "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ids",
+                  "description": "(Required) One or more bibliographic entity IDs separated by \"__\". Supported prefixes: doi, issn, isbn, omid, openalex, pmid, pmcid.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34ad8edc-d607-405b-899c-4b25d58ae0a1",
+              "name": "Bibliographic metadata records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    ":ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "require",
+                      "value": "doi"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "date:>2015"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc(pub_date)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "json",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ids",
+                      "description": "(Required) One or more bibliographic entity IDs separated by \"__\". Supported prefixes: doi, issn, isbn, omid, openalex, pmid, pmcid.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"doi:10.1007/978-1-4020-9632-7 isbn:9781402096327 isbn:9789048127108 openalex:W4249829199 omid:br/0612058700\",\n    \"title\": \"Adaptive Environmental Management\",\n    \"author\": \"\",\n    \"pub_date\": \"2009\",\n    \"page\": \"\",\n    \"issue\": \"\",\n    \"volume\": \"\",\n    \"venue\": \"\",\n    \"type\": \"book\",\n    \"publisher\": \"Springer Science And Business Media Llc [crossref:297 omid:ra/0610116006]\",\n    \"editor\": \"Allan, Catherine [orcid:0000-0003-2098-4759 omid:ra/069012996]; Stankey, George H. [omid:ra/061808486861]\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e79f37aa-7dc1-4559-9524-0e8798197f96",
+              "name": "No metadata found for the given IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    ":ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "require",
+                      "value": "doi"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "date:>2015"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc(pub_date)"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "json",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ids",
+                      "description": "(Required) One or more bibliographic entity IDs separated by \"__\". Supported prefixes: doi, issn, isbn, omid, openalex, pmid, pmcid.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.opencitations.net/index/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "141b3fff-d755-4495-b49e-322811439c7a",
+    "name": "OpenCitations Index REST Authors Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for accessing the data stored in the OpenCitations Index. Provides operations to retrieve citation data for references to other works appearing in a particular bibliographic entity, or citation data for references in other works to a particular bibliographic entity, given the identifier of a bibliographic entity, or to retrieve citation data about a particular citation identified by means of its Open Citation Identifier (OCI).\nAll operations return either a JSON document (default) or a CSV document according to the mimetype specified in the Accept header of the request.\nAPI calls are rate-limited to 180 requests/minute per IP address. For large-scale retrieval use the database dumps at download.opencitations.net.\n\n\nContact Support:\n Name: OpenCitations\n Email: contact@opencitations.net",
+      "type": "text/plain"
+    }
+  }
+}

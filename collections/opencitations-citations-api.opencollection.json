@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenCitations Index REST Authors Citations API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authorization",
+      "value": "{{authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Citations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get citation by OCI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/citation/:oci",
+            "params": [
+              {
+                "name": "oci",
+                "value": "",
+                "type": "path",
+                "description": "The dash-separated OCI number pair (without \"oci:\" prefix). Example: 06101801781-06180334099\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              }
+            ]
+          },
+          "docs": "Retrieves the citation metadata for the citation identified by the input Open Citation Identifier (OCI).\nThe Open Citation Identifier is a globally unique persistent identifier for bibliographic citations, consisting of two numbers separated by a dash (without the \"oci:\" prefix).\nFields returned: - oci: the Open Citation Identifier of the citation - citing: the PIDs of the citing entity - cited: the PIDs of the cited entity - creation: the creation date of the citation (ISO 8601 YYYY-MM-DD) - ti"
+        },
+        {
+          "info": {
+            "name": "Get incoming citation count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/citation-count/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              }
+            ]
+          },
+          "docs": "Retrieves the number of incoming citations to the bibliographic entity identified by the input PID (DOI, PMID, or OMID).\n"
+        },
+        {
+          "info": {
+            "name": "Get venue incoming citation count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/venue-citation-count/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ISSN of the journal, prefixed with \"issn:\""
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              }
+            ]
+          },
+          "docs": "Retrieves the number of incoming citations to all bibliographic entities published in a specific journal identified by the input ISSN.\n"
+        },
+        {
+          "info": {
+            "name": "Get incoming citations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/citations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "PID of the bibliographic entity. Must be prefixed with identifier type: doi:, pmid:, or omid:\n"
+              },
+              {
+                "name": "require",
+                "value": "",
+                "type": "query",
+                "description": "Removes rows with empty values in the specified field"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              },
+              {
+                "name": "json",
+                "value": "",
+                "type": "query",
+                "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves citation data for all references appearing in the reference lists of other citing works to the bibliographic entity identified by the input PID (DOI, PMID, or OMID). These constitute the incoming citations of the identified bibliographic entity.\nFields returned: oci, citing, cited, creation, timespan, journal_sc, author_sc.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

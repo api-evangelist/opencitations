@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenCitations Index REST Authors Editors API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authorization",
+      "value": "{{authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Editors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get works by editor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/editor/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ORCID or OMID of the editor. Example: orcid:0000-0003-2098-4759\n"
+              },
+              {
+                "name": "require",
+                "value": "",
+                "type": "query",
+                "description": "Removes rows with empty values in the specified field"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              },
+              {
+                "name": "json",
+                "value": "",
+                "type": "query",
+                "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the bibliographic metadata for each bibliographic entity edited by the person identified by the given ORCID or OpenCitations Meta Identifier (OMID).\nFields returned: id, title, author, pub_date, issue, volume, venue, page, type, publisher, editor.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

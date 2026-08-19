@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenCitations Index REST Authors Metadata API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "authorization",
+      "value": "{{authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bibliographic metadata by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opencitations.net/index/v2/metadata/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "One or more bibliographic entity IDs separated by \"__\". Supported prefixes: doi, issn, isbn, omid, openalex, pmid, pmcid.\n"
+              },
+              {
+                "name": "require",
+                "value": "",
+                "type": "query",
+                "description": "Removes rows with empty values in the specified field"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Orders results by field in ascending or descending order. Format: asc(field) or desc(field).\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format. Accepts \"csv\" or \"json\" (default)."
+              },
+              {
+                "name": "json",
+                "value": "",
+                "type": "query",
+                "description": "Transforms JSON data structure. Supports array splitting or dict conversion.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the bibliographic metadata for each of the bibliographic entities identified by one or more input IDs.\nEach ID is built as follows: ID abbreviation + \":\" + ID value. For example, \"doi:10.3233/ds-170012\" indicates a DOI identifier with value \"10.3233/ds-170012\".\nSupported ID abbreviations: doi, issn, isbn, omid, openalex, pmid, pmcid.\nMultiple IDs can be specified separated with double underscore \"__\". Example: doi:10.1108/jd-12-2013-0166__doi:10.1016/j.websem.2012.08.001\nFields returne"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
