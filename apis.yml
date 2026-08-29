@@ -4,6 +4,17 @@ description: OpenCitations is an open science research infrastructure providing 
   citation networks, DOI-based citation lookups, reference data, and bibliographic
   metadata from millions of research articles. All data is published under CC0 Public
   Domain Waiver for unrestricted reuse.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
