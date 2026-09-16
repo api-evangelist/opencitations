@@ -1,9 +1,8 @@
 name: OpenCitations
-description: OpenCitations is an open science research infrastructure providing free
-  access to scholarly bibliographic and citation data. It offers REST APIs for querying
-  citation networks, DOI-based citation lookups, reference data, and bibliographic
-  metadata from millions of research articles. All data is published under CC0 Public
-  Domain Waiver for unrestricted reuse.
+description: OpenCitations is an open science research infrastructure providing free access to scholarly
+  bibliographic and citation data. It offers REST APIs for querying citation networks, DOI-based citation
+  lookups, reference data, and bibliographic metadata from millions of research articles. All data is
+  published under CC0 Public Domain Waiver for unrestricted reuse.
 deliveryModel:
   model: unknown
   open_source: false
@@ -31,22 +30,21 @@ accessModel:
 image: https://opencitations.net/static/favicon.ico
 url: https://opencitations.net
 created: '2024-01-01'
-modified: '2026-06-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Citations
-  - Scholarly
-  - Research
-  - Open Science
-  - Bibliometrics
-  - DOI
-  - Academic
+- Citations
+- Scholarly
+- Research
+- Open Science
+- Bibliometrics
+- DOI
+- Academic
 apis:
 - name: OpenCitations SPARQL Endpoint
-  description: >-
-    SPARQL endpoints for structured queries against the OpenCitations Meta and Index datasets. Provides
-    access to the full Linked Open Data graph for both bibliographic metadata and citation entity data
-    using the SPARQL query language.
+  description: SPARQL endpoints for structured queries against the OpenCitations Meta and Index datasets.
+    Provides access to the full Linked Open Data graph for both bibliographic metadata and citation entity
+    data using the SPARQL query language.
   image: https://opencitations.net/static/favicon.ico
   humanURL: https://sparql.opencitations.net
   baseURL: https://sparql.opencitations.net
@@ -153,10 +151,12 @@ apis:
   - type: RateLimits
     url: https://kinlane.github.io/all/opencitations/rate-limits/meta-api.html
 maintainers:
-  - FN: OpenCitations
-    email: contact@opencitations.net
-    X-website: https://opencitations.net
+- FN: OpenCitations
+  email: contact@opencitations.net
+  X-website: https://opencitations.net
 common:
+- type: Website
+  url: https://opencitations.net
 - type: AgenticAccess
   url: agentic-access/opencitations-agentic-access.yml
 - type: DomainSecurity
