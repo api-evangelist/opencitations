@@ -102,6 +102,8 @@ apis:
   humanURL: https://api.opencitations.net/index/v2
   baseURL: https://api.opencitations.net/index/v2
   tags:
+  - Editor
+  tags_raw:
   - Editors
   properties:
   - type: OpenAPI
