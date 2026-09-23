@@ -1,22 +1,30 @@
 {
   "provider": "opencitations",
   "sources": [
-    "opencitations-authors-api-openapi.yml",
-    "opencitations-citations-api-openapi.yml",
-    "opencitations-editors-api-openapi.yml",
-    "opencitations-metadata-api-openapi.yml",
-    "opencitations-references-api-openapi.yml"
+    "_original/index-api.yml",
+    "_original/meta-api.yml"
   ],
   "outputs": [
-    "opencitations-authors-api-openapi.yml",
     "opencitations-citations-api-openapi.yml",
+    "opencitations-references-api-openapi.yml",
+    "opencitations-authors-api-openapi.yml",
     "opencitations-editors-api-openapi.yml",
-    "opencitations-metadata-api-openapi.yml",
-    "opencitations-references-api-openapi.yml"
+    "opencitations-metadata-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "index-api.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "meta-api.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "opencitations-authors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opencitations-citations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opencitations-editors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opencitations-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opencitations-references-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

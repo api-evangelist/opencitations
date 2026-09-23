@@ -1,13 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: OpenCitations Index REST Authors References API
-  description: 'REST API for accessing the data stored in the OpenCitations Index. Provides operations to retrieve citation data for references to other works appearing in a particular bibliographic entity, or citation data for references in other works to a particular bibliographic entity, given the identifier of a bibliographic entity, or to retrieve citation data about a particular citation identified by means of its Open Citation Identifier (OCI).
-
-    All operations return either a JSON document (default) or a CSV document according to the mimetype specified in the Accept header of the request.
-
-    API calls are rate-limited to 180 requests/minute per IP address. For large-scale retrieval use the database dumps at download.opencitations.net.
-
-    '
+  title: OpenCitations Index REST References API
+  description: REST API for accessing the data stored in the OpenCitations Index.
   version: 2.2.0
   contact:
     name: OpenCitations
@@ -31,9 +25,7 @@ paths:
     get:
       summary: Get outgoing reference count
       operationId: getReferenceCount
-      description: 'Retrieves the number of outgoing citations from the bibliographic entity identified by the input PID (DOI, PMID, OMID, or ISSN).
-
-        '
+      description: Retrieves the number of outgoing citations from the bibliographic entity identified by the input PID (DOI, PMID, OMID, or ISSN).
       tags:
       - References
       parameters:
@@ -68,9 +60,7 @@ paths:
       operationId: getReferences
       description: 'Retrieves citation data for all outgoing references to other cited works appearing in the reference list of the bibliographic entity identified by the input PID (DOI, PMID, or OMID).
 
-        Fields returned: oci, citing, cited, creation, timespan, journal_sc, author_sc.
-
-        '
+        Fields returned: oci, citing, cited, creation, timespan, journal_sc, author_sc.'
       tags:
       - References
       parameters:
@@ -102,15 +92,56 @@ paths:
               schema:
                 type: string
 components:
+  parameters:
+    format:
+      name: format
+      in: query
+      required: false
+      description: Output format. Accepts "csv" or "json" (default).
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    require:
+      name: require
+      in: query
+      required: false
+      description: Removes rows with empty values in the specified field
+      schema:
+        type: string
+        example: doi
+    json:
+      name: json
+      in: query
+      required: false
+      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
+
+        '
+      schema:
+        type: string
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
+
+        '
+      schema:
+        type: string
+        example: date:>2015
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
+
+        '
+      schema:
+        type: string
+        example: desc(date)
   schemas:
-    Count:
-      type: object
-      description: Citation or reference count result
-      properties:
-        count:
-          type: string
-          description: Number of citations or references
-          example: '34'
     Citation:
       type: object
       description: Citation metadata record
@@ -150,55 +181,14 @@ components:
           - false
           description: Whether the citation is an author self-citation
           example: 'no'
-  parameters:
-    filter:
-      name: filter
-      in: query
-      required: false
-      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
-
-        '
-      schema:
-        type: string
-        example: date:>2015
-    format:
-      name: format
-      in: query
-      required: false
-      description: Output format. Accepts "csv" or "json" (default).
-      schema:
-        type: string
-        enum:
-        - json
-        - csv
-        default: json
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
-
-        '
-      schema:
-        type: string
-        example: desc(date)
-    json:
-      name: json
-      in: query
-      required: false
-      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
-
-        '
-      schema:
-        type: string
-    require:
-      name: require
-      in: query
-      required: false
-      description: Removes rows with empty values in the specified field
-      schema:
-        type: string
-        example: doi
+    Count:
+      type: object
+      description: Citation or reference count result
+      properties:
+        count:
+          type: string
+          description: Number of citations or references
+          example: '34'
   securitySchemes:
     accessToken:
       type: apiKey
