@@ -169,6 +169,34 @@ paths:
                 type: string
 components:
   parameters:
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
+
+        '
+      schema:
+        type: string
+        example: desc(date)
+    require:
+      name: require
+      in: query
+      required: false
+      description: Removes rows with empty values in the specified field
+      schema:
+        type: string
+        example: doi
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
+
+        '
+      schema:
+        type: string
+        example: date:>2015
     format:
       name: format
       in: query
@@ -180,14 +208,6 @@ components:
         - json
         - csv
         default: json
-    require:
-      name: require
-      in: query
-      required: false
-      description: Removes rows with empty values in the specified field
-      schema:
-        type: string
-        example: doi
     json:
       name: json
       in: query
@@ -197,26 +217,6 @@ components:
         '
       schema:
         type: string
-    filter:
-      name: filter
-      in: query
-      required: false
-      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
-
-        '
-      schema:
-        type: string
-        example: date:>2015
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
-
-        '
-      schema:
-        type: string
-        example: desc(date)
   schemas:
     Citation:
       type: object
