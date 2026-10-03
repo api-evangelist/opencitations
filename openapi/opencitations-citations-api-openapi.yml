@@ -168,56 +168,15 @@ paths:
               schema:
                 type: string
 components:
-  parameters:
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
-
-        '
-      schema:
-        type: string
-        example: desc(date)
-    require:
-      name: require
-      in: query
-      required: false
-      description: Removes rows with empty values in the specified field
-      schema:
-        type: string
-        example: doi
-    filter:
-      name: filter
-      in: query
-      required: false
-      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
-
-        '
-      schema:
-        type: string
-        example: date:>2015
-    format:
-      name: format
-      in: query
-      required: false
-      description: Output format. Accepts "csv" or "json" (default).
-      schema:
-        type: string
-        enum:
-        - json
-        - csv
-        default: json
-    json:
-      name: json
-      in: query
-      required: false
-      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
-
-        '
-      schema:
-        type: string
   schemas:
+    Count:
+      type: object
+      description: Citation or reference count result
+      properties:
+        count:
+          type: string
+          description: Number of citations or references
+          example: '34'
     Citation:
       type: object
       description: Citation metadata record
@@ -246,25 +205,66 @@ components:
         journal_sc:
           type: string
           enum:
-          - true
-          - false
+          - 'yes'
+          - 'no'
           description: Whether the citation is a journal self-citation
           example: 'no'
         author_sc:
           type: string
           enum:
-          - true
-          - false
+          - 'yes'
+          - 'no'
           description: Whether the citation is an author self-citation
           example: 'no'
-    Count:
-      type: object
-      description: Citation or reference count result
-      properties:
-        count:
-          type: string
-          description: Number of citations or references
-          example: '34'
+  parameters:
+    format:
+      name: format
+      in: query
+      required: false
+      description: Output format. Accepts "csv" or "json" (default).
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    json:
+      name: json
+      in: query
+      required: false
+      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
+
+        '
+      schema:
+        type: string
+    require:
+      name: require
+      in: query
+      required: false
+      description: Removes rows with empty values in the specified field
+      schema:
+        type: string
+        example: doi
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: 'Orders results by field in ascending or descending order. Format: asc(field) or desc(field).
+
+        '
+      schema:
+        type: string
+        example: desc(date)
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: 'Applies conditional filtering. Supports regex or operators (=, <, >). Format: field:operator:value. Example: date:>2015
+
+        '
+      schema:
+        type: string
+        example: date:>2015
   securitySchemes:
     accessToken:
       type: apiKey
