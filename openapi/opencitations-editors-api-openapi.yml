@@ -65,26 +65,6 @@ paths:
           description: Editor not found
 components:
   parameters:
-    format:
-      name: format
-      in: query
-      required: false
-      description: Output format. Accepts "csv" or "json" (default).
-      schema:
-        type: string
-        enum:
-        - json
-        - csv
-        default: json
-    json:
-      name: json
-      in: query
-      required: false
-      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
-
-        '
-      schema:
-        type: string
     require:
       name: require
       in: query
@@ -113,6 +93,26 @@ components:
       schema:
         type: string
         example: date:>2015
+    format:
+      name: format
+      in: query
+      required: false
+      description: Output format. Accepts "csv" or "json" (default).
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    json:
+      name: json
+      in: query
+      required: false
+      description: 'Transforms JSON data structure. Supports array splitting or dict conversion.
+
+        '
+      schema:
+        type: string
   schemas:
     BibliographicMetadata:
       type: object
